@@ -14,10 +14,15 @@ BOT_NAME = 'dangdang'
 SPIDER_MODULES = ['dangdang.spiders']
 NEWSPIDER_MODULE = 'dangdang.spiders'
 
-# DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
-# SCHEDULER = "scrapy_redis.scheduler.Scheduler"
-# SCHEDULER_PERSIST = True
-# REDIS_URL = "redis://127.0.0.1:6379"
+# REDIS_HOST = '127.0.0.1'
+# REDIS_PORT = 6379
+
+DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
+SCHEDULER = "scrapy_redis.scheduler.Scheduler"
+SCHEDULER_PERSIST = True
+
+# 指定redis数据库的连接参数
+REDIS_URL = "redis://127.0.0.1:6379"
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
@@ -72,7 +77,7 @@ DEFAULT_REQUEST_HEADERS = {
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
    'dangdang.pipelines.DangdangPipeline': 300,
-   # 'scrapy_redis.pipelines.RedisPipeline': 301
+   'scrapy_redis.pipelines.RedisPipeline': 301
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
